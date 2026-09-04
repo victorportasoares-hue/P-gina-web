@@ -1,32 +1,403 @@
-<!DOCTYPE html>
- <html lang="pt-br">
-     <head> 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Blog</title> 
-          
-        <style>
-           header{ 
-            background-color: rgb(233, 74, 212);
-            color: rgb(122, 20, 143);
+!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soundtrack of Me</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background: linear-gradient(135deg, #090909, #3b1018);
+            padding: 35px 25px;
+            text-align: center;
+            border-bottom: 1px solid #651525;
+        }
+        header h1 {
+            margin: 0;
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 42px;
+            color: #ffffff;
+            letter-spacing: 3px;
+        }
+        header p {
+            color: #b9aeb0;
+            font-size: 17px;
+            margin: 12px 0 25px;
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 9px 16px;
+            border: 1px solid #651525;
+            border-radius: 20px;
+            font-size: 14px;
+            font-family: "Trebuchet MS", sans-serif;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            background-color: #b51f35;
+            border-color: #b51f35;
+            transform: translateY(-2px);
+        }
+        main {
+            max-width: 1050px;
+            margin: auto;
+            padding: 50px 25px;
+        }
+        section {
+            margin-bottom: 75px;
+            scroll-margin-top: 25px;
+        }
+        section > h2 {
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #b51f35;
+            letter-spacing: 1px;
+        }
+        section > p {
+            color: #b9aeb0;
+            line-height: 1.7;
+            font-family: Arial, sans-serif;
+        }
+        #inicio {
+            text-align: center;
+            padding: 60px 30px;
+            background: linear-gradient(135deg, #160b0d, #3b1018);
+            border-radius: 18px;
+            border: 1px solid #651525;
+        }
+        #inicio h2 {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 34px;
+            color: #ffffff;
+        }
+        #inicio p {
+            max-width: 700px;
+            margin: 15px auto;
+        }
+        .cards-artistas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+        .artista {
+            background-color: #111111;
+            border: 1px solid #3b1018;
+            border-radius: 12px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+        .artista:hover {
+            transform: translateY(-6px);
+            border-color: #b51f35;
+            background-color: #1b0c0f;
+        }
+        .artista h3 {
+            margin-top: 0;
+            font-family: Georgia, serif;
+            color: #ffffff;
+        }
+        .artista p {
+            color: #b9aeb0;
+            margin-bottom: 0;
+            font-family: Arial, sans-serif;
+        }
+        .lista-musicas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+        .musica {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background-color: #111111;
+            border: 1px solid #3b1018;
+            border-radius: 12px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+        .musica:hover {
+            transform: translateX(5px);
+            border-color: #b51f35;
+            background-color: #1b0c0f;
+        }
+        .numero {
+            font-size: 25px;
+            color: #b51f35;
+            font-weight: bold;
+            font-family: "Trebuchet MS", sans-serif;
+        }
+        .musica h3 {
+            margin: 0 0 6px;
+            color: #ffffff;
+            font-family: Georgia, serif;
+        }
+        .musica p {
+            margin: 0;
+            color: #b9aeb0;
+            font-family: Arial, sans-serif;
+        }
+        .trilha {
+            background: linear-gradient(135deg, #160b0d, #291015);
+            border: 1px solid #651525;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 18px;
+            transition: 0.3s;
+        }
+        .trilha:hover {
+            transform: translateY(-4px);
+            border-color: #b51f35;
+        }
+        .trilha h3 {
+            color: #ffffff;
+            margin-top: 0;
+            font-size: 21px;
+            font-family: Georgia, serif;
+        }
+        .trilha p {
+            color: #b9aeb0;
+            font-family: Arial, sans-serif;
+        }
+        .vibes {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+        .vibe {
+            min-height: 150px;
+            background-color: #111111;
+            border-radius: 14px;
+            padding: 20px;
+            border: 1px solid #3b1018;
+            transition: 0.3s;
+        }
+        .vibe:hover {
+            transform: translateY(-5px);
+            border-color: #b51f35;
+            background-color: #1b0c0f;
+        }
+        .vibe h3 {
+            color: #ffffff;
+            font-size: 18px;
+            font-family: Georgia, serif;
+        }
+        .vibe p {
+            color: #b9aeb0;
+            line-height: 1.5;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #050505;
+            color: #766b6d;
+            border-top: 1px solid #3b1018;
+            font-family: Arial, sans-serif;
+        }
+        @media (max-width: 850px) {
+            .cards-artistas {
+                grid-template-columns: repeat(2, 1fr);
             }
-            main{ 
-                background-color: rgb(28, 238, 210); 
-                color: antiquewhite;
-             }
-        </style>    
-    </head> 
-    
-    <body>
-        <header> 
-            <h1>BLOG dos mata e dorme</h1>
-            <p>noticias urgentes</p> 
-        </header>
-
-        <main>
-            <h2>Meu primeiro post</h2>
-            <p>Por: </p>
-            <p>Boas-vindas ao meu novo blog!</p>
-        </main> 
-    </body>
-</html>
+            .vibes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 32px;
+            }
+            .cards-artistas,
+            .lista-musicas,
+            .vibes {
+                grid-template-columns: 1fr;
+            }
+            main {
+                padding: 35px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>🎧 Soundtrack of Me</h1>
+    <p>Uma coleção de músicas, artistas e momentos que fazem parte da minha playlist.</p>
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#artistas">Artistas</a>
+        <a href="#musicas">Músicas</a>
+        <a href="#trilhas">Trilhas</a>
+        <a href="#vibes">Vibes</a>
+    </nav>
+</header>
+<main>
+    <section id="inicio">
+        <h2>🎵 Bem-vindo ao meu mundo musical</h2>
+        <p>A música está presente em diferentes momentos da nossa vida. Algumas músicas lembram pessoas, lugares, filmes ou simplesmente combinam com determinados momentos.</p>
+        <p>Neste site, reuni alguns artistas, músicas e trilhas sonoras que fazem parte dos meus gostos musicais.</p>
+    </section>
+    <section id="artistas">
+        <h2>🎤 Artistas</h2>
+        <div class="cards-artistas">
+            <div class="artista">
+                <h3>Shawn Mendes</h3>
+                <p>Pop</p>
+            </div>
+            <div class="artista">
+                <h3>Camila Cabello</h3>
+                <p>Pop</p>
+            </div>
+            <div class="artista">
+                <h3>Måneskin</h3>
+                <p>Rock</p>
+            </div>
+            <div class="artista">
+                <h3>Shakira</h3>
+                <p>Pop / Latin Pop</p>
+            </div>
+            <div class="artista">
+                <h3>Rihanna</h3>
+                <p>Pop / R&B</p>
+            </div>
+            <div class="artista">
+                <h3>Dua Lipa</h3>
+                <p>Pop</p>
+            </div>
+            <div class="artista">
+                <h3>Charlie Brown Jr.</h3>
+                <p>Rock brasileiro</p>
+            </div>
+            <div class="artista">
+                <h3>Marília Mendonça</h3>
+                <p>Sertanejo</p>
+            </div>
+            <div class="artista">
+                <h3>Ed Sheeran</h3>
+                <p>Pop</p>
+            </div>
+            <div class="artista">
+                <h3>The White Stripes</h3>
+                <p>Rock</p>
+            </div>
+            <div class="artista">
+                <h3>Jennifer Lopez</h3>
+                <p>Pop / Latin Pop</p>
+            </div>
+            <div class="artista">
+                <h3>Giulia Be</h3>
+                <p>Pop</p>
+            </div>
+            <div class="artista">
+                <h3>Luiza Souza</h3>
+                <p>Pop</p>
+            </div>
+        </div>
+    </section>
+    <section id="musicas">
+        <h2>🎶 Músicas que eu gosto</h2>
+        <div class="lista-musicas">
+            <div class="musica">
+                <span class="numero">01</span>
+                <div>
+                    <h3>There's Nothing Holdin' Me Back</h3>
+                    <p>Shawn Mendes</p>
+                </div>
+            </div>
+            <div class="musica">
+                <span class="numero">02</span>
+                <div>
+                    <h3>Liar</h3>
+                    <p>Camila Cabello</p>
+                </div>
+            </div>
+            <div class="musica">
+                <span class="numero">03</span>
+                <div>
+                    <h3>Zitti e Buoni</h3>
+                    <p>Måneskin</p>
+                </div>
+            </div>
+            <div class="musica">
+                <span class="numero">04</span>
+                <div>
+                    <h3>Iguaria</h3>
+                    <p>Luiza Souza</p>
+                </div>
+            </div>
+            <div class="musica">
+                <span class="numero">05</span>
+                <div>
+                    <h3>Too Bad</h3>
+                    <p>Giulia Be</p>
+                </div>
+            </div>
+            <div class="musica">
+                <span class="numero">06</span>
+                <div>
+                    <h3>New Rules</h3>
+                    <p>Dua Lipa</p>
+                </div>
+            </div>
+            <div class="musica">
+                <span class="numero">07</span>
+                <div>
+                    <h3>Seven Nation Army</h3>
+                    <p>The White Stripes</p>
+                </div>
+            </div>
+            <div class="musica">
+                <span class="numero">08</span>
+                <div>
+                    <h3>Sing</h3>
+                    <p>Ed Sheeran</p>
+                </div>
+            </div>
+            <div class="musica">
+                <span class="numero">09</span>
+                <div>
+                    <h3>Marília Mendonça</h3>
+                    <p>Várias músicas</p>
+                </div>
+            </div>
+            <div class="musica">
+                <span class="numero">10</span>
+                <div>
+                    <h3>Charlie Brown Jr.</h3>
+                    <p>Várias músicas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="trilhas">
+        <h2>🎬 Trilhas Sonoras</h2>
+        <p>Algumas músicas conseguem ficar ainda mais marcantes quando aparecem em filmes. A trilha sonora de Crepúsculo é um exemplo.</p>
+        <div class="trilha">
+            <h3>🌙 Roslyn</h3>
+            <p>Bon Iver & St. Vincent</p>
+            <p>Uma das músicas mais marcantes da atmosfera da saga.</p>
+        </div>
+        <div class="trilha">
+            <h3>❤️ A Thousand Years</h3>
+            <p>Christina Perri</p>
+            <p>Uma música que se tornou muito associada à história de Crepúsculo.
